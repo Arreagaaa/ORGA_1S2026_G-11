@@ -1,0 +1,66 @@
+// ============================================================
+//  ARCHIVO DE CONFIGURACION — CASA INTELIGENTE
+//  Organización Computacional — ECYS / USAC
+//
+//  INSTRUCCIONES DE CARGA:
+//    1. Abrí Arduino IDE → Monitor Serial (9600 baudios)
+//    2. Asegurate que el modo de envío sea "Newline" o "Both NL & CR"
+//    3. Pegá este contenido completo y envialo
+//    4. LED verde parpadea 3 veces = configuracion guardada OK
+//    5. LED rojo = error de sintaxis
+//
+//  COMANDOS DE CONTROL INDIVIDUAL (via Bluetooth en tiempo real):
+//    sala:on / sala:off
+//    comedor:on / comedor:off
+//    cocina:on / cocina:off
+//    banio:on / banio:off
+//    habitacion:on / habitacion:off  <-- también prende/apaga el ventilador
+//    ventilador:on / ventilador:off  <-- control manual independiente
+//
+//  REGLA ESPECIAL — HABITACION:
+//    Al enviar "habitacion:on"  → se enciende el LED + ventilador ON
+//    Al enviar "habitacion:off" → se apaga el LED  + ventilador OFF
+//    Esto se debe a que el motor DC (ventilador) está ubicado
+//    físicamente en la habitación como ventilador de techo.
+// ============================================================
+
+conf_ini // Inicio obligatorio — no borrar esta línea
+
+// ── MODO FIESTA ─────────────────────────────────────────────
+// LEDs alternan entre grupos (efecto discoteca)
+// Ventilador encendido
+
+modo_fiesta
+Ventilador: ON
+LED'S: Alternandose
+
+// ── MODO RELAJADO ───────────────────────────────────────────
+// Todo apagado — ambiente tranquilo
+
+modo_relajado
+Ventilador: OFF
+LED'S: OFF
+
+// ── MODO NOCHE ──────────────────────────────────────────────
+// Todo apagado — para dormir
+
+modo_noche
+Ventilador: OFF
+LED'S: OFF
+
+// ── ENCENDER TODO ───────────────────────────────────────────
+// Todos los LEDs encendidos con su color + ventilador ON
+// (la habitacion enciende el ventilador por la regla especial)
+
+encender_todo
+Ventilador: ON
+LED'S: ON
+
+// ── APAGAR TODO ─────────────────────────────────────────────
+// Todo completamente apagado
+
+apagar_todo
+Ventilador: OFF
+LED'S: OFF
+
+conf:fin // Fin obligatorio — no borrar esta línea
